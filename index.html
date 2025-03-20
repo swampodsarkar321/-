@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আল ফালাহ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            position: relative;
+            min-height: 200px;
+        }
+
+        header h1 {
+            font-size: 36px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .content {
+            width: 70%;
+        }
+
+        .sidebar {
+            width: 28%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        section {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        section h2 {
+            font-size: 28px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        section p {
+            font-size: 18px;
+            color: #555;
+        }
+
+        #iftar-roza {
+            background-color: #16a085;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        #digital-clock {
+            text-align: center;
+            background-color: #2980b9;
+            color: white;
+            padding: 30px;
+            font-size: 48px;
+            font-weight: bold;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #clock {
+            font-size: 48px;
+            color: #f1c40f;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .islamic-icon {
+            font-size: 24px;
+            color: #f39c12;
+            margin-top: 20px;
+        }
+
+        #taskbar {
+            background-color: #e67e22;
+            color: white;
+            font-size: 20px;
+            padding: 10px 0;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        #welcome-message {
+            background-color: #16a085;
+            color: white;
+            padding: 10px;
+            font-size: 20px;
+            text-align: center;
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 5px;
+            display: none;
+            z-index: 2000;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #121212;
+                color: white;
+            }
+            header, footer {
+                background-color: #333;
+            }
+            #digital-clock {
+                background-color: #1abc9c;
+            }
+        }
+
+        /* Spinner */
+        #loading {
+            display: none;
+            text-align: center;
+            padding: 50px;
+        }
+
+        #loading img {
+            width: 50px;
+        }
+
+        /* Social Media Buttons */
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .social-buttons a {
+            margin: 0 10px;
+            font-size: 24px;
+            color: #3498db;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="taskbar"></div>
+
+    <header>
+        <h1>আল ফালাহ</h1>
+    </header>
+
+    <div id="loading">
+        <img src="loading-spinner.gif" alt="Loading...">
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <section id="iftar-roza">
+                <h2>ইফতারের কাউন্টডাউন</h2>
+                <p>ইফতারের জন্য বাকি সময়:</p>
+                <div id="countdown"></div>
+            </section>
+
+            <section id="digital-clock">
+                <h2>ডিজিটাল ক্লক (বাংলাদেশ সময়)</h2>
+                <div id="clock"></div>
+            </section>
+
+            <!-- Surah Section -->
+            <section id="surah">
+                <h2>গুরতপুর্ন সূরা</h2>
+                <p><strong>সূরা আল-ফাতিহা:</strong> আল্লাহর নাম নিয়ে শুরু করি, দয়ালু ও করুণাময় আল্লাহ।</p>
+                <p><strong>সূরা আল-বাকারা:</strong> রোজা কেবল তোমাদের জন্যই একটি কর্ম, তুমি যতটা হতে পারো সৎ হও।</p>
+            </section>
+
+            <!-- Daily Hadith Section -->
+            <section id="hadith">
+                <h2>আজকের হাদীস</h2>
+                <p><strong>হাদীস:</strong> "যে কোন মুসলিম তার ভাইয়ের বিপদে পাশে দাঁড়াবে, আল্লাহ তার বিপদ দূর করবেন।" - (বুখারি)</p>
+            </section>
+
+            <section>
+                <div class="social-buttons">
+                    <a href="https://www.facebook.com" target="_blank" class="fab fa-facebook-square"></a>
+                    <a href="https://twitter.com" target="_blank" class="fab fa-twitter-square"></a>
+                    <a href="https://www.instagram.com" target="_blank" class="fab fa-instagram-square"></a>
+                </div>
+            </section>
+        </div>
+
+        <div class="sidebar">
+            <section>
+                <h2>সেহরি ও ইফতার সময়</h2>
+                <p><strong>সেহরি:</strong> ৪:৫৫ AM</p>
+                <p><strong>ইফতার:</strong> ৬:১৫ PM</p>
+            </section>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; ২০২৫ আল ফালাহ ইসলামিক ওয়েবসাইট. সর্বস্বত্ব সুরক্ষিত।</p>
+    </footer>
+
+    <div id="welcome-message">স্বাগতম! আল ফালাহ ওয়েবসাইটে আপনাকে স্বাগতম।</div>
+
+    <script>
+        // Function to show digital clock with Bangladesh Time in 12-hour format
+        function updateClock() {
+            const now = new Date();
+            let hours = now.getHours();
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+
+            // Convert 24-hour to 12-hour format
+            hours = hours % 12;
+            hours = hours ? hours : 12; // the hour '0' should be '12'
+
+            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
+        }
+
+        // Countdown Timer for Iftar
+        function updateCountdown() {
+            const now = new Date();
+            const iftarTime = new Date();
+            iftarTime.setHours(18, 15, 0, 0); // Iftar at 6:15 PM
+
+            const timeRemaining = iftarTime - now;
+            if (timeRemaining > 0) {
+                const hours = Math.floor(timeRemaining / (1000 * 60 * 60));
+                const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+                document.getElementById('countdown').textContent = `${hours}ঘণ্টা ${minutes}মিনিট ${seconds}সেকেন্ড`;
+            } else {
+                document.getElementById('countdown').textContent = 'ইফতার সময়!';
+            }
+        }
+
+        // Function to update the Taskbar Dua based on the time of day
+        function updateTaskbarDua() {
+            const now = new Date();
+            const hours = now.getHours();
+            let duaMessage = '';
+
+            if (hours >= 4 && hours < 16.5) {
+                duaMessage = 'শুভ সকাল! আল্লাহ আমাদের দিনটি বরকতপূর্ণ করুন।';
+            } else if (hours >= 16.5 && hours < 18) {
+                duaMessage = 'শুভ বিকেল! আল্লাহ আমাদের সুরক্ষিত রাখুন।';
+            } else if (hours >= 18 && hours < 19) {
+                duaMessage = 'শুভ সন্ধ্যা! আল্লাহ আমাদের রাত শান্তিপূর্ণ করুন।';
+            } else {
+                duaMessage = 'শুভ রাত! আল্লাহ আমাদের নিরাপদে রাখুন।';
+            }
+
+            // Display dua message first before time
+            document.getElementById('taskbar').textContent = duaMessage;
+            setTimeout(() => {
+                updateClock(); // Update time after dua message
+            }, 2000); // Delay before showing the clock
+        }
+
+        // Event to trigger welcome message after login
+        function showWelcomeMessage() {
+            const welcomeMessage = document.getElementById('welcome-message');
+            welcomeMessage.style.display = 'block';
+            setTimeout(() => {
+                welcomeMessage.style.display = 'none';
+            }, 5000); // Hide after 5 seconds
+        }
+
+        // Call functions
+        setInterval(updateCountdown, 1000); // Update countdown every second
+        setInterval(updateClock, 1000); // Update clock every second
+        updateTaskbarDua(); // Initial taskbar message
+
+        // Showing welcome message
+        showWelcomeMessage();
+    </script>
+</body>
+</html>
